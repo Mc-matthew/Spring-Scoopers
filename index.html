@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Scoopers | Dog Poop Cleanup Service | Waterloo/Kitchener</title>
+    <meta name="description" content="Professional dog poop removal in Waterloo & Kitchener. Weekly yard cleanup starting at $75. We scoop so you don't have to! Call 519-500-7774.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        :root {
+            --poop-brown: #8B4513;
+            --grass-green: #228B22;
+            --bag-blue: #1E3A8A;
+            --warning-orange: #F97316;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f0fdf4;
+            overflow-x: hidden;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .poop-gradient {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #F4A460 100%);
+        }
+        
+        .grass-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23228B22' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .shit-list {
+            list-style: none;
+            position: relative;
+        }
+        
+        .shit-list li:before {
+            content: "💩";
+            position: absolute;
+            left: -30px;
+            font-size: 1.2rem;
+        }
+        
+        .floating-poop {
+            animation: floatPoop 6s ease-in-out infinite;
+        }
+        
+        @keyframes floatPoop {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .bag-icon {
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+        
+        .scoop-animation {
+            animation: scoop 2s ease-in-out infinite;
+        }
+        
+        @keyframes scoop {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-15deg); }
+        }
+        
+        .phone-pulse {
+            animation: phonePulse 2s infinite;
+        }
+        
+        @keyframes phonePulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 139, 34, 0.7); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(34, 139, 34, 0); }
+        }
+        
+        .price-tag {
+            background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+            transform: rotate(-3deg);
+            box-shadow: 0 10px 25px -5px rgba(220, 38, 38, 0.4);
+        }
+        
+        .yard-card {
+            background: linear-gradient(to bottom, #f0fdf4 0%, #dcfce7 100%);
+            border: 3px solid #228B22;
+        }
+        
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg) translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .btn-shine:hover::after {
+            transform: rotate(30deg) translateX(100%);
+        }
+        
+        .no-shit-zone {
+            background: repeating-linear-gradient(
+                45deg,
+                #f0fdf4,
+                #f0fdf4 10px,
+                #dcfce7 10px,
+                #dcfce7 20px
+            );
+        }
+    </style>
+</head>
+<body class="text-stone-800 antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 rounded-2xl flex items-center justify-center transform rotate-3 shadow-lg">
+                        <span class="text-2xl">💩</span>
+                    </div>
+                    <div>
+                        <span class="font-display font-bold text-2xl text-green-800 tracking-tight block">Spring Scoopers</span>
+                        <span class="text-xs text-green-600 font-semibold tracking-wider uppercase">We Deal With Your Sh*t</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-stone-600 hover:text-green-700 font-semibold transition-colors">Services</a>
+                    <a href="#pricing" class="text-stone-600 hover:text-green-700 font-semibold transition-colors">Pricing</a>
+                    <a href="#why-us" class="text-stone-600 hover:text-green-700 font-semibold transition-colors">Why Us?</a>
+                    <a href="tel:5195007774" class="bg-green-600 text-white px-6 py-3 rounded-full font-bold hover:bg-green-700 transform hover:scale-105 transition-all phone-pulse flex items-center gap-2 shadow-lg shadow-green-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        519-500-7774
+                    </a>
+                </div>
+                
+                <button class="md:hidden text-stone-600" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-stone-100">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#services" class="block px-3 py-2 text-stone-600 hover:text-green-700 font-semibold">Services</a>
+                <a href="#pricing" class="block px-3 py-2 text-stone-600 hover:text-green-700 font-semibold">Pricing</a>
+                <a href="tel:5195007774" class="block px-3 py-2 text-green-600 font-bold flex items-center gap-2">
+                    📞 519-500-7774
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden grass-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-sm font-bold border-2 border-amber-200">
+                        <span class="text-lg">🐕</span>
+                        <span>Serving Waterloo & Kitchener</span>
+                    </div>
+                    
+                    <h1 class="font-display text-5xl lg:text-7xl font-bold text-stone-900 leading-tight">
+                        Tired of Stepping in 
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-amber-900 relative inline-block">
+                            Dog Sh*t?
+                            <span class="absolute -top-6 -right-6 text-4xl floating-poop">💩</span>
+                        </span>
+                    </h1>
+                    
+                    <p class="text-2xl text-stone-700 leading-relaxed max-w-lg font-medium">
+                        We'll clean up your yard so you don't have to watch where you walk. Professional poop scooping service in Waterloo Region.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="scrollToBooking()" class="bg-green-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-green-700 transform hover:scale-105 transition-all btn-shine shadow-xl shadow-green-200 flex items-center justify-center gap-2">
+                            <span>Book a Cleanup</span>
+                            <span class="text-2xl">🧹</span>
+                        </button>
+                        <a href="tel:5195007774" class="bg-white text-green-700 border-3 border-green-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-green-50 transition-all flex items-center justify-center gap-2 phone-pulse">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            Call 519-500-7774
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white/80 backdrop-blur rounded-2xl p-6 border-2 border-green-200 shadow-lg">
+                        <p class="font-bold text-stone-800 mb-2 flex items-center gap-2">
+                            <span class="text-2xl">⚠️</span>
+                            Warning Signs You Need Us:
+                        </p>
+                        <ul class="shit-list space-y-2 text-stone-700 ml-8">
+                            <li>You've ruined 3+ pairs of shoes</li>
+                            <li>Your kids can't play in the backyard</li>
+                            <li>Your yard smells like a zoo</li>
+                            <li>You're hosting a BBQ this weekend</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="relative z-10 bg-white rounded-3xl shadow-2xl p-4 border-4 border-green-600 transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <div class="relative overflow-hidden rounded-2xl">
+                            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&auto=format&fit=crop" alt="Clean yard with happy dog" class="w-full h-auto object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-green-900/80 to-transparent flex items-end p-6">
+                                <div class="text-white">
+                                    <p class="font-bold text-2xl">Before & After</p>
+                                    <p class="text-green-100">We make the sh*t disappear</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute -bottom-6 -right-6 bg-amber-500 text-white rounded-2xl p-4 shadow-xl transform rotate-6 hover:rotate-0 transition-transform">
+                            <p class="font-bold text-2xl">100%</p>
+                            <p class="text-sm font-semibold">Poop-Free<br>Guarantee</p>
+                        </div>
+                        
+                        <div class="absolute -top-6 -left-6 bg-white rounded-full p-4 shadow-xl border-4 border-green-500 floating-poop">
+                            <span class="text-4xl">🚫💩</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problem Section -->
+    <section class="py-20 bg-stone-100">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="font-display text-4xl font-bold text-stone-900 mb-6">Let's Be Honest...</h2>
+            <p class="text-2xl text-stone-700 mb-8">Nobody wants to pick up dog poop. It's gross, it smells, and you've got better things to do.</p>
+            
+            <div class="grid md:grid-cols-3 gap-6 mt-12">
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-amber-600">
+                    <div class="text-5xl mb-4">🤢</div>
+                    <h3 class="font-bold text-xl mb-2">It's Disgusting</h3>
+                    <p class="text-stone-600">Warm, smelly, and squishy. Why would you want to touch that?</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-amber-600">
+                    <div class="text-5xl mb-4">⏰</div>
+                    <h3 class="font-bold text-xl mb-2">It Takes Forever</h3>
+                    <p class="text-stone-600">Your weekends are precious. Don't spend them hunting for landmines.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-amber-600">
+                    <div class="text-5xl mb-4">👟</div>
+                    <h3 class="font-bold text-xl mb-2">The Accidents</h3>
+                    <p class="text-stone-600">One missed pile = ruined shoes and a ruined day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="bg-green-100 text-green-800 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wide">Simple Pricing</span>
+                <h2 class="font-display text-4xl font-bold text-stone-900 mt-4 mb-4">Pick Your Poop Plan</h2>
+                <p class="text-xl text-stone-600">Weekly service. No contracts. Cancel anytime.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- 1 Dog -->
+                <div class="yard-card rounded-3xl p-8 relative hover:shadow-2xl transition-all hover:-translate-y-2">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-1 rounded-full text-sm font-bold">
+                        1 DOG
+                    </div>
+                    <div class="text-center pt-4">
+                        <div class="text-6xl mb-4">🐕</div>
+                        <div class="flex items-baseline justify-center gap-1 mb-2">
+                            <span class="text-5xl font-bold text-stone-900">$75</span>
+                            <span class="text-stone-500 font-semibold">/month</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-6">4 visits per month</p>
+                        
+                        <ul class="text-left space-y-3 mb-8 text-stone-700">
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-600 text-xl">✓</span>
+                                All poop removed
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Bagged & disposed
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Photo proof sent
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Same day each week
+                            </li>
+                        </ul>
+                        
+                        <button onclick="selectPlan(1)" class="w-full bg-stone-800 text-white py-3 rounded-xl font-bold hover:bg-green-600 transition-colors">
+                            Select Plan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2 Dogs -->
+                <div class="yard-card rounded-3xl p-8 relative hover:shadow-2xl transition-all hover:-translate-y-2 transform md:-translate-y-4 border-4 border-amber-500">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg">
+                        MOST POPULAR
+                    </div>
+                    <div class="text-center pt-4">
+                        <div class="text-6xl mb-4">🐕‍🦺🐕</div>
+                        <div class="flex items-baseline justify-center gap-1 mb-2">
+                            <span class="text-5xl font-bold text-amber-600">$115</span>
+                            <span class="text-stone-500 font-semibold">/month</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-6">4 visits per month</p>
+                        
+                        <ul class="text-left space-y-3 mb-8 text-stone-700">
+                            <li class="flex items-center gap-2">
+                                <span class="text-amber-500 text-xl">★</span>
+                                <strong>Everything in 1 Dog</strong>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Extra time for double duty
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Yard deodorizer spray
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Priority scheduling
+                            </li>
+                        </ul>
+                        
+                        <button onclick="selectPlan(2)" class="w-full bg-amber-500 text-white py-3 rounded-xl font-bold hover:bg-amber-600 transition-colors shadow-lg shadow-amber-200">
+                            Select Plan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3+ Dogs -->
+                <div class="yard-card rounded-3xl p-8 relative hover:shadow-2xl transition-all hover:-translate-y-2">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-4 py-1 rounded-full text-sm font-bold">
+                        3+ DOGS
+                    </div>
+                    <div class="text-center pt-4">
+                        <div class="text-6xl mb-4">🐕🐕🐕</div>
+                        <div class="flex items-baseline justify-center gap-1 mb-2">
+                            <span class="text-5xl font-bold text-stone-900">$155</span>
+                            <span class="text-stone-500 font-semibold">/month</span>
+                        </div>
+                        <p class="text-stone-500 text-sm mb-6">4 visits per month</p>
+                        
+                        <ul class="text-left space-y-3 mb-8 text-stone-700">
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-600 text-xl">✓</span>
+                                <strong>Heavy duty cleanup</strong>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Extended service time
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Premium deodorizing
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-600 text-xl">✓</span>
+                                Twice weekly available
+                            </li>
+                        </ul>
+                        
+                        <button onclick="selectPlan(3)" class="w-full bg-stone-800 text-white py-3 rounded-xl font-bold hover:bg-green-600 transition-colors">
+                            Select Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center bg-green-50 rounded-2xl p-6 border-2 border-green-200">
+                <p class="text-stone-700 font-semibold flex items-center justify-center gap-2">
+                    <span class="text-2xl">🎉</span>
+                    First cleanup is FREE when you sign up for weekly service!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="services" class="py-20 bg-stone-50">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl font-bold text-stone-900 mb-4">How This Sh*t Works</h2>
+                <p class="text-xl text-stone-600">Three simple steps to a poop-free yard</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center relative">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-xl border-4 border-white">1</div>
+                    <div class="text-5xl mb-4 mt-4">📅</div>
+                    <h3 class="font-bold text-xl mb-2">You Book</h3>
+                    <p class="text-stone-600">Pick your plan and schedule online or call us. We show up same day each week.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center relative">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-xl border-4 border-white">2</div>
+                    <div class="text-5xl mb-4 mt-4">🧹</div>
+                    <h3 class="font-bold text-xl mb-2">We Scoop</h3>
+                    <p class="text-stone-600">Our professional scoopers thoroughly clean every inch of your yard. No pile left behind.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 shadow-lg text-center relative">
+                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-xl border-4 border-white">3</div>
+                    <div class="text-5xl mb-4 mt-4">📸</div>
+                    <h3 class="font-bold text-xl mb-2">You Relax</h3>
+                    <p class="text-stone-600">We send photo proof and haul away the waste. Your yard is clean and fresh!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-20 bg-gradient-to-br from-green-600 to-green-800 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden text-stone-800">
+                <div class="bg-amber-500 p-8 text-white text-center">
+                    <h2 class="font-display text-3xl font-bold mb-2">Ready for a Clean Yard?</h2>
+                    <p class="text-amber-100">Fill this out and we'll contact you within 24 hours</p>
+                </div>
+                
+                <div class="p-8">
+                    <form id="bookingForm" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-stone-700 mb-2">Your Name</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl border-2 border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-stone-700 mb-2">Phone Number</label>
+                                <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-xl border-2 border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all" placeholder="(519) 500-7774">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-stone-700 mb-2">Email</label>
+                            <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl border-2 border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all" placeholder="john@example.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-stone-700 mb-2">Your Address in Waterloo/Kitchener</label>
+                            <input type="text" id="address" required class="w-full px-4 py-3 rounded-xl border-2 border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all" placeholder="123 Main St, Waterloo">
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-stone-700 mb-2">How Many Dogs?</label>
+                                <select id="dogCount" onchange="updatePrice()" class="w-full px-4 py-3 rounded-xl border-2 border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all bg-white">
+                                    <option value="1">1 Dog - $75/month</option>
+                                    <option value="2">2 Dogs - $115/month</option>
+                                    <option value="3">3+ Dogs - $155/month</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-stone-700 mb-2">When Do You Want Us to Start?</label>
+                                <input type="date" id="startDate" required class="w-full px-4 py-3 rounded-xl border-2 border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all">
+                            </div>
+                        </div>
+
+                        <div class="bg-green-50 rounded-xl p-4 flex justify-between items-center border-2 border-green-200">
+                            <div>
+                                <span class="font-bold text-stone-700 block">Monthly Total:</span>
+                                <span class="text-sm text-stone-500">No contracts. Cancel anytime.</span>
+                            </div>
+                            <span id="priceDisplay" class="text-3xl font-bold text-green-600">$75</span>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-stone-700 mb-2">Gate Code or Special Instructions?</label>
+                            <textarea id="notes" rows="2" class="w-full px-4 py-3 rounded-xl border-2 border-stone-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all" placeholder="Gate code: 1234. Dog is friendly but loud!"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-green-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-green-700 transform hover:scale-[1.02] transition-all btn-shine shadow-lg flex items-center justify-center gap-2">
+                            <span>Book My Cleanup</span>
+                            <span class="text-2xl">🧹</span>
+                        </button>
+
+                        <p class="text-center text-sm text-stone-500">
+                            Prefer to call? <a href="tel:5195007774" class="text-green-600 font-bold hover:underline">519-500-7774</a>
+                        </p>
+                    </form>
+
+                    <div id="successMessage" class="hidden text-center py-12">
+                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-4xl">✅</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-stone-900 mb-2">You're All Set!</h3>
+                        <p class="text-stone-600 mb-4">We'll call you within 24 hours to confirm your first cleanup.</p>
+                        <button onclick="resetForm()" class="text-green-600 font-bold hover:underline">Book another yard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center">
+                            <span class="text-xl">💩</span>
+                        </div>
+                        <div>
+                            <span class="font-display font-bold text-xl">Spring Scoopers</span>
+                            <span class="block text-xs text-green-400">We Deal With Your Sh*t</span>
+                        </div>
+                    </div>
+                    <p class="text-stone-400 mb-4">Professional dog poop removal in Waterloo, Kitchener, and surrounding areas. Locally owned and operated.</p>
+                    <a href="tel:5195007774" class="inline-flex items-center gap-2 text-green-400 hover:text-green-300 font-bold text-lg transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                        </svg>
+                        519-500-7774
+                    </a>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4 text-green-400">Service Areas</h4>
+                    <ul class="space-y-2 text-stone-400">
+                        <li>Waterloo</li>
+                        <li>Kitchener</li>
+                        <li>Cambridge</li>
+                        <li>St. Jacobs</li>
+                        <li>Elmira</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4 text-green-400">Hours</h4>
+                    <ul class="space-y-2 text-stone-400">
+                        <li>Monday-Friday: 8am - 6pm</li>
+                        <li>Saturday: 9am - 4pm</li>
+                        <li>Sunday: Closed</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-stone-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-stone-500 text-sm">&copy; 2024 Spring Scoopers. All rights reserved.</p>
+                <p class="text-stone-600 text-sm mt-2 md:mt-0">Waterloo/Kitchener, Ontario, Canada 🍁</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function scrollToBooking() {
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectPlan(dogCount) {
+            document.getElementById('dogCount').value = dogCount;
+            updatePrice();
+            scrollToBooking();
+        }
+
+        function updatePrice() {
+            const prices = {
+                '1': 75,
+                '2': 115,
+                '3': 155
+            };
+            const count = document.getElementById('dogCount').value;
+            document.getElementById('priceDisplay').textContent = '$' + prices[count];
+        }
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('bookingForm').classList.add('hidden');
+            document.getElementById('successMessage').classList.remove('hidden');
+        });
+
+        function resetForm() {
+            document.getElementById('bookingForm').reset();
+            document.getElementById('bookingForm').classList.remove('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
+            updatePrice();
+        }
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+
+        document.getElementById('startDate').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>
